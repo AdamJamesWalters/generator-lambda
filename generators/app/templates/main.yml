@@ -8,24 +8,24 @@ Resources:
     Properties:
       FunctionName: <%= lambdaName %>
       Handler: src/index.handler
-      Runtime: nodejs10.x
+      Runtime: <%= runtime %>
       CodeUri: ../../../build
       AutoPublishAlias: live
       DeploymentPreference:
         Type: AllAtOnce
       Description: <%= projectName %> Lambda
       Role: !GetAtt LambdaExecutionRole.Arn
-      MemorySize: 256
-      Timeout: 600
+      MemorySize: <%= memory %>
+      Timeout: <%= timeout %>
       Environment:
         Variables:
           NODE_ENV: production
       Tags:
-        Project: interactive-tv-data
+        Project: <%= BBCproject %>
         BBCComponent: <%= githubRepo %>
-        BBCProject: interactive-tv-data
-        BBCEnvironment: live
-        BBCOwner: orion
+        BBCProject: <%= BBCproject %>
+        BBCEnvironment: <%= env %>
+        BBCOwner: <%= owner %>
 
   LambdaLogGroup:
     Type: "AWS::Logs::LogGroup"

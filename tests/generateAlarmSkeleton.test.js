@@ -1,7 +1,7 @@
 const generateAlarmSkeleton = require('../helpers/generateAlarmSkeleton')
 
 test('Returns correct skeleton for HighLaunchAlarm', () => {
-  const actual = generateAlarmSkeleton(['HighLaunchAlarm'])
+  const actual = generateAlarmSkeleton(['HighLaunchAlarm'], 'lambda')
   const expected = [
     `HighLaunchAlarm:
     Type: AWS::CloudWatch::Alarm
@@ -10,7 +10,7 @@ test('Returns correct skeleton for HighLaunchAlarm', () => {
       ComparisonOperator: GreaterThanThreshold
       EvaluationPeriods: 1
       MetricName: Launches
-      Namespace: Telemetry
+      Namespace: lambda
       Period: 60   # Multiples of 60 seconds
       Threshold: 10
       TreatMissingData: notBreaching
@@ -21,7 +21,7 @@ test('Returns correct skeleton for HighLaunchAlarm', () => {
 })
 
 test('Returns correct skeleton for ZeroLaunchAlarm', () => {
-  const actual = generateAlarmSkeleton(['ZeroLaunchAlarm'])
+  const actual = generateAlarmSkeleton(['ZeroLaunchAlarm'], 'lambda')
   const expected = [
     `ZeroLaunchAlarm:
     Type: AWS::CloudWatch::Alarm
@@ -30,7 +30,7 @@ test('Returns correct skeleton for ZeroLaunchAlarm', () => {
       ComparisonOperator: LessThanOrEqualToThreshold
       EvaluationPeriods: 1
       MetricName: Launches
-      Namespace: Telemetry
+      Namespace: lambda
       Period: 60   # Multiples of 60 seconds
       Threshold: 0
       TreatMissingData: notBreaching
@@ -41,7 +41,7 @@ test('Returns correct skeleton for ZeroLaunchAlarm', () => {
 })
 
 test('Returns array of skeletons that join together to becoome one formatted string', () => {
-  const actual = generateAlarmSkeleton(['HighLaunchAlarm', 'ZeroLaunchAlarm'])
+  const actual = generateAlarmSkeleton(['HighLaunchAlarm', 'ZeroLaunchAlarm'], 'lambda')
   const expected = `HighLaunchAlarm:
     Type: AWS::CloudWatch::Alarm
     Properties:
@@ -49,7 +49,7 @@ test('Returns array of skeletons that join together to becoome one formatted str
       ComparisonOperator: GreaterThanThreshold
       EvaluationPeriods: 1
       MetricName: Launches
-      Namespace: Telemetry
+      Namespace: lambda
       Period: 60   # Multiples of 60 seconds
       Threshold: 10
       TreatMissingData: notBreaching
@@ -62,12 +62,12 @@ test('Returns array of skeletons that join together to becoome one formatted str
       ComparisonOperator: LessThanOrEqualToThreshold
       EvaluationPeriods: 1
       MetricName: Launches
-      Namespace: Telemetry
+      Namespace: lambda
       Period: 60   # Multiples of 60 seconds
       Threshold: 0
       TreatMissingData: notBreaching
       Unit: Count
       Statistic: Sum`
 
-  expect(actual.join('\n\n  ')).toEqual(expected)
+  expect(actual.join('\n  ')).toEqual(expected)
 })

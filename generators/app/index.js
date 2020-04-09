@@ -45,6 +45,42 @@ module.exports = class extends MyBase {
       },
       {
         type: 'input',
+        name: 'runtime',
+        message: 'What language would you like the lambda to use?',
+        store: true
+      },
+      {
+        type: 'input',
+        name: 'memory',
+        message: 'How much memory would you like the lambda to have?',
+        store: true
+      },
+      {
+        type: 'input',
+        name: 'timeout',
+        message: 'The timeout for this lambda',
+        store: true
+      },
+      {
+        type: 'input',
+        name: 'BBCproject',
+        message: 'The BBC project this lambda is a part of',
+        store: true
+      },
+      {
+        type: 'input',
+        name: 'owner',
+        message: 'The owner of this repo',
+        store: true
+      },
+      {
+        type: 'input',
+        name: 'env',
+        message: 'The environment this lambda will run on (test, live etc.)',
+        store: true
+      },
+      {
+        type: 'input',
         name: 'accountNumber',
         message: 'The account you would like the lambda to operate from',
         store: true
@@ -101,7 +137,6 @@ module.exports = class extends MyBase {
   }
 
   writing () {
-
     const apiGatewaySkeleton = `HttpApi:
     Type: AWS::ApiGatewayV2::Api
     Properties:
@@ -116,13 +151,17 @@ module.exports = class extends MyBase {
       githubRepo: this.answers.githubRepo,
       projectName: this.answers.projectName,
       lambdaName: this.answers.lambdaName,
+      runtime: this.answers.runtime,
+      memory: this.answers.memory,
+      timeout: this.answers.timeout,
+      BBCproject: this.answers.BBCproject,
+      owner: this.answers.owner,
+      env: this.answers.env,
       lambdaLogGroup: this.answers.lambdaLogGroup,
       logRetention: this.answers.logRetention,
       apiGateway: this.answers.apiGateway === 'yes' ? apiGatewaySkeleton : null,
       alarms: alarmsSkeleton.join('\n  ')
     }
-
-    console.log('Params: ',templateParams)
 
     this.fs.copyTpl(
       this.templatePath('main.yml'),
@@ -137,6 +176,6 @@ module.exports = class extends MyBase {
   }
 
   end() {
-    this.log('Generation Finished!')
+    this.log('Generation Finished! Your lambda template is stored in "deploy/stacks/main.yml"')
   }
 }

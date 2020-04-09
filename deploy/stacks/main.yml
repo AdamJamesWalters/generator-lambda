@@ -11,19 +11,21 @@ Resources:
       Runtime: nodejs10.x
       CodeUri: ../../../build
       AutoPublishAlias: live
+      DeletionPolicy: Retain
+      UpdateReplacePolicy: Retain
       DeploymentPreference:
         Type: AllAtOnce
       Description: some repo Lambda
       Role: !GetAtt LambdaExecutionRole.Arn
-      MemorySize: 256
+      MemorySize: 128
       Timeout: 600
       Environment:
         Variables:
           NODE_ENV: production
       Tags:
-        Project: interactive-tv-data
+        Project: interactive-tv
         BBCComponent: repo
-        BBCProject: interactive-tv-data
+        BBCProject: interactive-tv
         BBCEnvironment: live
         BBCOwner: orion
 
