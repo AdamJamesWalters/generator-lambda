@@ -44,7 +44,7 @@ module.exports = class extends MyBase {
         store: true
       },
       {
-        type: 'checkbox',
+        type: 'list',
         name: 'runtime',
         message: 'What language would you like the lambda to use?',
         choices: [
