@@ -102,9 +102,29 @@ module.exports = class extends MyBase {
         store: true
       },
       {
-        type: 'input',
+        type: 'list',
         name: 'accountNumber',
         message: 'The account you would like the lambda to operate from',
+        choices: [
+          { name: '119990297419 - ConnectedTVDevelopment-AAA-8732-IPTV', value: '119990297419' },
+          { name: '198243407611 - ConnectedTVProduction-AAA-8732-IPTV', value: '198243407611' },
+          { name: '704126444864 - broadcast-red-button-AAA-8732-RB20', value: '704126444864' },
+          { name: '317552331553 - broadcast-red-button-dev-AAA-8732-RB20', value: '317552331553' },
+          { name: '884655607167 - cloudeng-aws-access-mgmt-prod', value: '884655607167' },
+          { name: '884655607167 - cloudeng-aws-access-mgmt-prod', value: '884655607167' },
+          { name: '833713583288 - iplayer-ibl-dev-AAA-8739-IPEN', value: '833713583288' },
+          { name: '764750639056 - iplayer-ibl-prod-AAA-8739-IPEN', value: '764750639056' },
+          { name: '749144762306 - itv-innovation-dev', value: '749144762306' },
+          { name: '219028824415 - itv-shared-services-dev', value: '219028824415' },
+          { name: '406283532425 - itv-shared-services-prod', value: '406283532425' },
+          { name: '931726921995 - tv-certification-dev', value: '931726921995' },
+          { name: '615125061974 - tv-certification-prod', value: '615125061974' },
+          { name: '323904133437 - tv-radio-systems-engineering-dev', value: '323904133437' },
+          { name: '573493533641 - tviplayer-tooling-AAA-8739-IPEN', value: '573493533641' },
+          { name: '336366971631 - tvpartnercertificationjira-production-S3230', value: '336366971631' },
+          { name: '979446310614 - tvr-pipeline-prod', value: '979446310614' },
+          { name: '990076731699 - tvr-tooling-prod', value: '990076731699' }
+        ],
         store: true
       },
       {
