@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AdamJamesWalters/lambda-generator.git"
+    "url": "git+https://github.com/AdamJamesWalters/generator-lambda.git"
   },
   "author": "",
   "license": "ISC",
@@ -19,9 +19,9 @@
     "generators"
   ],
   "bugs": {
-    "url": "https://github.com/AdamJamesWalters/lambda-generator/issues"
+    "url": "https://github.com/AdamJamesWalters/generator-lambda/issues"
   },
-  "homepage": "https://github.com/AdamJamesWalters/lambda-generator#readme",
+  "homepage": "https://github.com/AdamJamesWalters/generator-lambda#readme",
   "dependencies": {
     "jest": "^25.1.0",
     "yeoman-generator": "^4.2.0",
