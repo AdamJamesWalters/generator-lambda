@@ -44,15 +44,37 @@ module.exports = class extends MyBase {
         store: true
       },
       {
-        type: 'input',
+        type: 'checkbox',
         name: 'runtime',
         message: 'What language would you like the lambda to use?',
+        choices: [
+          { name: 'dotnetcore1.0', value: 'dotnetcore1.0' },
+          { name: 'dotnetcore2.0', value: 'dotnetcore2.0' },
+          { name: 'dotnetcore2.1', value: 'dotnetcore2.1' },
+          { name: 'go1.x', value: 'go1.x' },
+          { name: 'java8', value: 'java8' },
+          { name: 'java11', value: 'java11' },
+          { name: 'nodejs', value: 'nodejs' },
+          { name: 'nodejs4.3-edge', value: 'nodejs4.3-edge' },
+          { name: 'nodejs4.3', value: 'nodejs4.3' },
+          { name: 'nodejs6.10', value: 'nodejs6.10' },
+          { name: 'nodejs8.10', value: 'nodejs8.10' },
+          { name: 'nodejs10.x', value: 'nodejs10.x' },
+          { name: 'nodejs12.x', value: 'nodejs12.x' },
+          { name: 'provided', value: 'provided' },
+          { name: 'python2.7', value: 'python2.7' },
+          { name: 'python3.6', value: 'python3.6' },
+          { name: 'python3.7', value: 'python3.7' },
+          { name: 'python3.8', value: 'python3.8' },
+          { name: 'ruby2.5', value: 'ruby2.5' },
+          { name: 'ruby2.7', value: 'ruby2.7' }
+        ],
         store: true
       },
       {
         type: 'input',
         name: 'memory',
-        message: 'How much memory would you like the lambda to have?',
+        message: 'How much memory would you like the lambda to have? (This must be between 128 and 3008, and in multiples of 64)',
         store: true
       },
       {
