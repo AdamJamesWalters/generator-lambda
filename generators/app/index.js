@@ -129,6 +129,12 @@ module.exports = class extends MyBase {
       },
       {
         type: 'input',
+        name: 'region',
+        message: 'What region is the lambda going to be created in? (eu-west-1 etc.)',
+        store: true
+      },
+      {
+        type: 'input',
         name: 'lambdaLogGroup',
         message: 'The name of the lambda log group',
         store: true
@@ -183,9 +189,9 @@ module.exports = class extends MyBase {
     Type: AWS::ApiGatewayV2::Api
     Properties:
       Name: Lambda Proxy
-      Description: Lambda Proxy using Quick Create
+      Description: Lambda proxy using quick create
       ProtocolType: HTTP
-      Target: arn:aws:lambda:us-west-1:${this.answers.accountNumber}:function:Echo`
+      Target: arn:aws:apigateway:${this.answers.region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${this.answers.region}:${this.answers.accountNumber}:function:${this.answers.lambdaName}/invocations`
 
     const alarmsSkeleton = generateAlarmSkeleton(this.answers.alarms, this.answers.namespace)
 
@@ -219,5 +225,6 @@ module.exports = class extends MyBase {
 
   end() {
     this.log('Generation Finished! Your lambda template is stored in "deploy/stacks/main.yml"')
+    this.log('If you would like to validate your generated cloud formation, run "npm run validateTemplate"')
   }
 }
